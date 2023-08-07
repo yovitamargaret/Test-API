@@ -1,0 +1,27 @@
+<html>
+    <body>
+        <div>
+            <a th:href="@{department/form}">CREATE</a>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NAME</th>
+                        <th>ACTION</th>
+                    </tr>   
+                </thead>
+                <tbody>
+                    <tr th:each="department: ${departments}">
+                        <td th:text="${department.department_id}">
+                        <td th:text="${department.name}">
+                        <td><a th:href="@{department/form/{id} (id = ${department.department_id})}">EDIT</a> | 
+                            <form th:action="@{department/delete/{id} (id = ${department.department_id})}" method="post">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

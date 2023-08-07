@@ -1,0 +1,40 @@
+<html>
+    <body>
+        <div>
+            <a th:href="@{overtime/form}">CREATE</a>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>EMPLOYEE</th>
+                        <th>SCHEDULE</th>
+                        <th>TIPE</th>
+                        <th>ASSIGMENT</th>
+                        <th>STATUS</th>
+                        <th>START TIME</th>
+                        <th>END TIME</th>
+                        <th>ACTION</th>
+                    </tr>   
+                </thead>
+                <tbody>
+                    <tr th:each="overtime: ${overtimes}">
+                        <td th:text="${overtime.Submission_id}">
+                        <td th:text="${overtime.employee.fullname}">
+                        <td th:text="${overtime.overtimeSchedule.submit_date}">
+                        <td th:text="${overtime.overtimeType.name}">
+                        <td th:text="${overtime.Assignment}">
+                        <td th:text="${overtime.overtimeSchedule.overtimeStatus.name}">
+                        <td th:text="${overtime.start_time}">
+                        <td th:text="${overtime.end_time}">
+ 
+                        <td><a th:href="@{overtime/form/{id} (id = ${overtime.Submission_id})}">EDIT</a> | 
+                            <form th:action="@{overtime/delete/{id} (id = ${overtime.Submission_id})}" method="post">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,35 @@
+<html>
+    <body>
+        <div>
+            <a th:href="@{employee/form}">CREATE</a>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NAME</th>
+                        <th>PHONE</th>
+                        <th>JOINDATE</th>
+                        <th>EMAIL</th>
+                        <th>DEPARTEMENT_ID</th>
+                        <th>ACTION</th>
+                    </tr>   
+                </thead>
+                <tbody>
+                    <tr th:each="employee: ${employees}">
+                        <td th:text="${employee.employee_id}">
+                        <td th:text="${employee.fullname}">
+                        <td th:text="${employee.phone}">
+                        <td th:text="${employee.joindate}">
+                        <td th:text="${employee.email}">
+                        <td th:text="${employee.department.name}">   
+                        <td><a th:href="@{employee/form/{id} (id = ${employee.employee_id})}">EDIT</a> | 
+                            <form th:action="@{employee/delete/{id} (id = ${employee.employee_id})}" method="post">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

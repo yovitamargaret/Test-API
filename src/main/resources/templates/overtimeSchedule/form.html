@@ -1,0 +1,18 @@
+<html>
+<head>
+</head>
+<body>
+    <div>
+        <form th:action="@{/overtimeSchedule/save}" method="post" th:object="${overtimeSchedule}">
+            <input id="id" name="schedule_id" th:field="*{schedule_id}" placeholder="id" type="text">
+            <input id="submit_date" name="submit_date" th:field="*{submit_date}" placeholder="submit_date" type="datetime-local">
+            <select th:field="*{overtimeStatus}">
+                <option th:each="overtimeStatus : ${overtimeStatuss}" th:value="${overtimeStatus.status_id}" 
+                th:selected="${overtimeStatus.status_id}" th:text="${overtimeStatus.name}"></option>
+            </select>
+            <button type="submit">Submit</button>
+        </form>  
+    </div>
+    
+</body>
+</html>

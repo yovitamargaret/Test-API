@@ -1,0 +1,27 @@
+<html>
+    <body>
+        <div>
+            <a th:href="@{overtimeType/form}">CREATE</a>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NAME</th>
+                        <th>ACTION</th>
+                    </tr>   
+                </thead>
+                <tbody>
+                    <tr th:each="overtimeType: ${overtimeTypes}">
+                        <td th:text="${overtimeType.type_id}">
+                        <td th:text="${overtimeType.name}">
+                        <td><a th:href="@{overtimeType/form/{id} (id = ${overtimeType.type_id})}">EDIT</a> | 
+                            <form th:action="@{overtimeType/delete/{id} (id = ${overtimeType.type_id})}" method="post">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,14 @@
+<html>
+<head>
+</head>
+<body>
+    <div>
+        <form th:action="@{/overtimeType/save}" method="post" th:object="${overtimeType}">
+            <input id="id" name="type_id" th:field="*{type_id}" placeholder="id" type="text">
+            <input id="name" name="name" th:field="*{name}" placeholder="name" type="text" >
+            <button type="submit">Submit</button>
+        </form>  
+    </div>
+    
+</body>
+</html>
