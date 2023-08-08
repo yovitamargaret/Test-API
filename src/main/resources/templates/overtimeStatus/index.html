@@ -1,22 +1,26 @@
 <html>
     <body>
         <div>
-            <a th:href="@{overtimeStatus/form}">CREATE</a>
-            <table>
+            <div class="col-3 p-3 mb-2">
+                <a th:href="@{overtimeStatus/form}" class="btn btn-primary">CREATE</a>
+            </div>
+            <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>NAME</th>
-                        <th>ACTION</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">NAME</th>
+                        <th scope="col">ACTION</th>
                     </tr>   
                 </thead>
                 <tbody>
                     <tr th:each="overtimeStatus: ${overtimeStatuss}">
                         <td th:text="${overtimeStatus.status_id}">
                         <td th:text="${overtimeStatus.name}">
-                        <td><a th:href="@{overtimeStatus/form/{id} (id = ${overtimeStatus.status_id})}">EDIT</a> | 
+                        <td><a th:href="@{overtimeStatus/form/{id} (id = ${overtimeStatus.status_id})}"><button type="button" class="btn btn-link">Edit</button></a> | 
                             <form th:action="@{overtimeStatus/delete/{id} (id = ${overtimeStatus.status_id})}" method="post">
-                                <button type="submit">Delete</button>
+                                <div class="col">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </div>
                             </form>
                         </td>
                     </tr>

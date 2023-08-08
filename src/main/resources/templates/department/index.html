@@ -1,22 +1,29 @@
 <html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    </head>
     <body>
         <div>
-            <a th:href="@{department/form}">CREATE</a>
-            <table>
+            <div class="col-3 p-3 mb-2">
+                <a th:href="@{department/form}" class="btn btn-primary"><button type="button" class="btn btn-link">Edit</button></a>
+            </div> 
+            <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>NAME</th>
-                        <th>ACTION</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">NAME</th>
+                        <th scope="col">ACTION</th>
                     </tr>   
                 </thead>
                 <tbody>
                     <tr th:each="department: ${departments}">
                         <td th:text="${department.department_id}">
                         <td th:text="${department.name}">
-                        <td><a th:href="@{department/form/{id} (id = ${department.department_id})}">EDIT</a> | 
+                        <td><a th:href="@{department/form/{id} (id = ${department.department_id})}"><button type="button" class="btn btn-link">Edit</button></a> | 
                             <form th:action="@{department/delete/{id} (id = ${department.department_id})}" method="post">
-                                <button type="submit">Delete</button>
+                                <div class="col">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </div>       
                             </form>
                         </td>
                     </tr>
