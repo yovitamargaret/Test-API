@@ -35,5 +35,10 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeRepository.deleteById(id);
         return !employeeRepository.findById(id).isPresent();
     }
+
+    @Override
+    public Integer findIdByEmail(String email) {
+        return employeeRepository.findIdByEmail(email);
+    }
     
 }

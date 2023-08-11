@@ -5,9 +5,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entities.Employee;
+import com.example.demo.entities.User;
 
 @Repository
-public interface EmployeeRepository extends JpaRepository<Employee,Integer>{
-    @Query(value = "SELECT employee_id FROM tb_m_employee WHERE email = ?1", nativeQuery=true)
-    public Integer findIdByEmail(String email);
+public interface AccountRepository extends JpaRepository<Employee, Integer> {
+    @Query("SELECT u FROM User u JOIN u.employee e WHERE e.email = ?1")
+    public User login(String email);
 }
