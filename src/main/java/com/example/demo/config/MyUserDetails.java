@@ -32,17 +32,18 @@ public class MyUserDetails implements UserDetails, UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User data = accountRepository.login(username);
-        return new MyUserDetails(data);
-    }
-
-    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> grantedAuthority = new HashSet<>();
         grantedAuthority.add(authority);
         return grantedAuthority;
     }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User data = accountRepository.login(username);
+        return new MyUserDetails(data);
+    }
+
 
     @Override
     public String getPassword() {
@@ -74,3 +75,4 @@ public class MyUserDetails implements UserDetails, UserDetailsService {
         return true;
     }
 }
+

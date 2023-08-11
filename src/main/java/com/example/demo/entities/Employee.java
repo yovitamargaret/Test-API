@@ -9,9 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_m_employee")
@@ -33,7 +36,12 @@ public class Employee {
     private Department department;
 
     @OneToMany(mappedBy = "employee")
+    @JsonIgnore
     private List<Overtime> overtimes;
+
+    @OneToOne(mappedBy = "employee")
+    @JsonIgnore
+    private User user;
 
     public Integer getEmployee_id() {
         return employee_id;

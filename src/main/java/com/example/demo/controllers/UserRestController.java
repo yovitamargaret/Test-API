@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.ForgotPasswordRequest;
 import com.example.demo.dto.LoginRequest;
 import com.example.demo.dto.RegisterRequest;
 import com.example.demo.handler.Response;
 import com.example.demo.services.AccountService;
+import com.example.demo.services.ForgotPasswordService;
 
 @RestController
 @RequestMapping("api")
@@ -29,6 +31,9 @@ public class UserRestController {
 
     @Autowired
     private AccountService accountService;
+
+    @Autowired
+    private ForgotPasswordService forgotPasswordService;
 
     @PostMapping("user/login")
     public ResponseEntity<Object> login(@RequestBody LoginRequest login)
@@ -50,12 +55,13 @@ public class UserRestController {
         if(result){
             return Response.generate(HttpStatus.OK, "data has been saved");
         }
-        return Response.generate(HttpStatus.INTERNAL_SERVER_ERROR,"Failed to save data");
+        return Response.generate(HttpStatus.OK, "data has been saved");
     }
 
     @PostMapping("user/forgot")
-    public String forgotPassword(){
-        return "";
+    public ResponseEntity<Object> forgotPassword(@RequestBody ForgotPasswordRequest forgotPasswordRequest) {
+        forgotPasswordService.initiatePasswordReset(forgotPasswordRequest.getEmail());
+        return Response.generate(HttpStatus.OK, "Password reset process initiated.");
     }
 
     @PostMapping("profile/changePassword")
@@ -63,3 +69,6 @@ public class UserRestController {
         return "";
     }
 }
+
+
+
