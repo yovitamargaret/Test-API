@@ -2,12 +2,7 @@ package com.example.demo.entities;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -16,13 +11,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "role_id")
     private Integer role_id;
+
+    @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "role")
-    @JsonIgnore
-    private List<User> users;
+    @Column(name = "level")
+    private Integer level;
 
+    @OneToMany(mappedBy="role")
+    @JsonIgnore
+    private List<User> user;
+    
     public Integer getRole_id() {
         return role_id;
     }
@@ -39,5 +40,12 @@ public class Role {
         this.name = name;
     }
 
-    
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+
 }

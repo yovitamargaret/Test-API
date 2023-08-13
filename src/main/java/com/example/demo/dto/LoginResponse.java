@@ -3,8 +3,9 @@ package com.example.demo.dto;
 public class LoginResponse {
     private String email;
     private String password;
-    private String role;
+    private String name;
     
+
     public String getEmail() {
         return email;
     }
@@ -17,10 +18,10 @@ public class LoginResponse {
     public void setPassword(String password) {
         this.password = password;
     }
-    public String getRole() {
-        return role;
+    public String getName() {
+        return name;
     }
-    public void setRole(String role) {
-        this.role = role;
+    public void setName(String name) {
+        this.name = name;
     }
 }

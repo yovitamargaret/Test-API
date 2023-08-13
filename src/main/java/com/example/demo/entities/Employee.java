@@ -1,67 +1,75 @@
 package com.example.demo.entities;
-import java.util.Date;
-import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import java.sql.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "tb_m_employee")
+@Table(name="tb_m_employee")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name ="employee_id")
     private Integer employee_id;
-    private String fullname;
-    private String phone;
+    @Column(name ="name")
+    private String name;
+    @Column(name ="address")
+    private String address;
+    @Column(name="phonenumber")
+    private String phonenumber;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-
-    private Date joindate;
-
-    private String email;
-    
     @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
 
-    @OneToMany(mappedBy = "employee")
-    @JsonIgnore
-    private List<Overtime> overtimes;
+    // @ManyToOne
+    // @JoinColumn
+    @Column(name ="manager_id")
+    private Integer manager_id;
+    // private Employee employee;
+    @Column(name ="joindate")
+    private Date joindate;
+    @Column(name ="email")
+    private String email;
 
-    @OneToOne(mappedBy = "employee")
-    @JsonIgnore
-    private User user;
-
+    
+    public Department getDepartment() {
+        return department;
+    }
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
     public Integer getEmployee_id() {
         return employee_id;
     }
     public void setEmployee_id(Integer employee_id) {
         this.employee_id = employee_id;
     }
-    public String getFullname() {
-        return fullname;
+    public String getName() {
+        return name;
     }
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setName(String name) {
+        this.name = name;
     }
-    public String getPhone() {
-        return phone;
+    public String getAddress() {
+        return address;
     }
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setAddress(String address) {
+        this.address = address;
     }
-       public Date getJoindate() {
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+    public Integer getManager_id() {
+        return manager_id;
+    }
+    public void setManager_id(Integer manager_id) {
+        this.manager_id = manager_id;
+    }
+    public Date getJoindate() {
         return joindate;
     }
     public void setJoindate(Date joindate) {
@@ -73,14 +81,4 @@ public class Employee {
     public void setEmail(String email) {
         this.email = email;
     }
-    public Department getDepartment() {
-        return department;
-    }
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
-
-
-
-    
 }

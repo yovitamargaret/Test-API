@@ -1,27 +1,20 @@
 package com.example.demo.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "tb_m_user")
+@Table(name="tb_m_user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer user_id;
     private String password;
+
     @ManyToOne
-    @JoinColumn(name= "role_id")
+    @JoinColumn(name="role_id")
     private Role role;
 
     @OneToOne
-    @JoinColumn(name ="user_id")
+    @JoinColumn(name="user_id")
     private Employee employee;
 
     public Integer getUser_id() {
@@ -55,5 +48,4 @@ public class User {
     public void setEmployee(Employee employee) {
         this.employee = employee;
     }
-
 }

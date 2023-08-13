@@ -8,7 +8,7 @@ import com.example.demo.entities.Employee;
 import com.example.demo.entities.User;
 
 @Repository
-public interface AccountRepository extends JpaRepository<Employee, Integer> {
-    @Query("SELECT u FROM User u JOIN u.employee e WHERE e.email = ?1")
-    public User login(String email);
+public interface AccountRepository extends JpaRepository<Employee,Integer>{
+    @Query(value = "select u from User u join u.employee e where e.email = ?1")
+    public User login(String Email);
 }

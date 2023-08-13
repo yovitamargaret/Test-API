@@ -12,8 +12,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entities.User;
 import com.example.demo.repositories.AccountRepository;
+import com.example.demo.entities.User;
 
 @Service
 public class MyUserDetails implements UserDetails, UserDetailsService {
@@ -43,7 +43,6 @@ public class MyUserDetails implements UserDetails, UserDetailsService {
         User data = accountRepository.login(username);
         return new MyUserDetails(data);
     }
-
 
     @Override
     public String getPassword() {
@@ -75,4 +74,3 @@ public class MyUserDetails implements UserDetails, UserDetailsService {
         return true;
     }
 }
-
