@@ -27,6 +27,12 @@ public class AppSecurityConfig {
             try {
                 auth
                     .antMatchers("/api/user/**").permitAll()
+                    .antMatchers("/region/**").permitAll()
+                    .antMatchers("/api/region/**").permitAll()
+                    .antMatchers("/department/**").permitAll()
+                    .antMatchers("/api/department/**").permitAll()
+                    .antMatchers("/overtimeStatus/**").permitAll()
+                    .antMatchers("/api/overtimeStatus/**").permitAll()
                     .anyRequest().authenticated()
                     .and()
                     .formLogin()
